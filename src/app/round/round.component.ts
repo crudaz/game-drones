@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../service/game.service';
+import { Subscription } from 'rxjs';
+import { GameModel } from '../model';
 
 @Component({
   selector: 'app-round',
@@ -6,24 +9,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./round.component.scss']
 })
 export class RoundComponent implements OnInit {
+  game: GameModel;
+  subscription: Subscription;
+
   title: string;
-  PlayerName: string;
+  playerName: string;
   round: number;
   
-  constructor() { }
-
+  constructor(private gameService: GameService) {}
+   
   ngOnInit() {
-    
-    this.title = 'Round 1';
-    this.PlayerName = "Player1 Name";
-    this.round = 3;
+
+    this.subscription = this.gameService.getGameData().subscribe((game) => {
+      this.game = game;
+
+      this.title = 'Round ' + game.round;
+      this.playerName = game.player1.name;
+      this.round = game.round;
+
+      console.log('game: ', game);
+    });
 
   }
 
-  changeRound(title: string, playerName: string, roundNumber: number) {
-    this.title = 'Round ' + roundNumber;
-    this.PlayerName = playerName;
-    this.round = roundNumber;
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
+
+  // changeRound(title: string, playerName: string, roundNumber: number) {
+  //   this.title = 'Round ' + roundNumber;
+  //   this.PlayerName = playerName;
+  //   this.round = roundNumber;
+  // }
 
 }
