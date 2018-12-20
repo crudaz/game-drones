@@ -8,12 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class FormComponent implements OnInit {
 
   @Input() title: string;
-  @Input() PlayerName: string;
-  
+  @Input() playerName: string;
+  @Input() moves;
+  selectedMove: string;
   constructor() { }
 
   ngOnInit() {
-
+    this.selectedMove = this.moves[0];
   }
 
   changePlayer() {

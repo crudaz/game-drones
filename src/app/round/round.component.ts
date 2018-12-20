@@ -15,14 +15,15 @@ export class RoundComponent implements OnInit {
   title: string;
   playerName: string;
   round: number;
+
+  moves = ['Rock', 'Scissors', 'Paper'];
   
   constructor(private gameService: GameService) {}
    
   ngOnInit() {
-
     this.subscription = this.gameService.getGameData().subscribe((game) => {
       this.game = game;
-
+      
       this.title = 'Round ' + game.round;
       this.playerName = game.player1.name;
       this.round = game.round;
@@ -35,11 +36,5 @@ export class RoundComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
-  // changeRound(title: string, playerName: string, roundNumber: number) {
-  //   this.title = 'Round ' + roundNumber;
-  //   this.PlayerName = playerName;
-  //   this.round = roundNumber;
-  // }
 
 }
