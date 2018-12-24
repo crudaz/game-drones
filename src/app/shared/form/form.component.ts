@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { PlayerModel } from '../../model';
 
 @Component({
   selector: 'app-form',
@@ -10,15 +11,24 @@ export class FormComponent implements OnInit {
   @Input() title: string;
   @Input() playerName: string;
   @Input() moves;
-  selectedMove: string;
+
+  newData: PlayerModel;
+
+  @Output() valueChanged = new EventEmitter<PlayerModel>();
+
   constructor() { }
 
   ngOnInit() {
-    this.selectedMove = this.moves[0];
+    // this.valueChanged = this.moves[0];
   }
 
-  changePlayer() {
-    console.log('change player');
+  onValueChanged(event: any) {
+    this.newData = {
+      name: this.playerName,
+      move: event,
+      point: 0
+    };
+    this.valueChanged.emit(this.newData);
   }
 
 }

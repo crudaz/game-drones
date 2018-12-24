@@ -8,7 +8,7 @@ import { GameModel } from '../model';
 export class GameService {
 
   private gameSource = new BehaviorSubject<GameModel>( 
-    new GameModel ({name: '', point: 0}, {name: '', point: 0}, 1, '')
+    new GameModel ({name: '', move: '', point: 0}, {name: '', move: '', point: 0}, 0, '')
   );
 
   constructor() {}

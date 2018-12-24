@@ -1,12 +1,35 @@
+<div *ngIf="!playerWinner">
 
-<app-form
+  <app-form
     [title]="title"
     [playerName]="playerName"
     [moves]="moves"
->
-</app-form>
+    (valueChanged)="getMove($event)"
+  >
+  </app-form>
 
+  <div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Round</th>
+            <th scope="col">Winner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of historyGame">
+            <th scope="row">{{item.round}}</th>
+            <td>{{item.player}}</td>
+          </tr>
+        </tbody>
+      </table>
+`</div>
 
-<div *ngIf="round==3">
-    Score component
 </div>
+
+
+<app-winner 
+  *ngIf="playerWinner"
+  [winner]="playerWinner" 
+>
+</app-winner>

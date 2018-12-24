@@ -9,13 +9,15 @@ import { FormComponent } from './shared/form/form.component';
 import { RoundComponent } from './round/round.component';
 
 import { GameService } from './service/game.service';
+import { WinnerComponent } from './winner/winner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartGameComponent,
     FormComponent,
-    RoundComponent
+    RoundComponent,
+    WinnerComponent
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./start-game.component.scss']
 })
 export class StartGameComponent implements OnInit {
-  model = new PlayerModel('', 0);  
+  model = new PlayerModel('', '', 0);  
   submitted = false;
 
   game: GameModel;
@@ -34,8 +34,8 @@ export class StartGameComponent implements OnInit {
 
   newGameData(model) {
     this.game = new GameModel(
-      new PlayerModel(this.model['player1'], 0),
-      new PlayerModel(this.model['player2'], 0),
+      new PlayerModel(this.model['player1'], '', 0),
+      new PlayerModel(this.model['player2'], '', 0),
       1,
       ''
     );
